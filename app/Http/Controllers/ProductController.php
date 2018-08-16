@@ -20,8 +20,8 @@ class ProductController extends Controller
         $url=  url('/');
 
         $imageName = time().'.'.request()->image->getClientOriginalExtension();
-        request()->image->move(public_path('images'), $imageName);
-        $receipt=$url."/public/images/".$imageName;
+        request()->image->move(public_path('productImages'), $imageName);
+        $productImage=$url."/productImages/".$imageName;
 
 
         $product = new Product();
@@ -29,6 +29,7 @@ class ProductController extends Controller
         $product->amount = $request->amount;
         $product->description = $request->product_description;
         $product->category_id = $request->category;
+        $product->product_image = $productImage;
         $product->sell_by_date = $request->sellby_date;
         $product->user_id = 1;
 
