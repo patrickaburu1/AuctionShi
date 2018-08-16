@@ -19,7 +19,10 @@ Route::get('/upload', function () {
     return view('products.upload_product');
 });
 
+Route::post('/upload-product', 'ProductController@uploadProduct');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
