@@ -38,6 +38,7 @@ class ProductController extends Controller
 
             $product->save();
 
+            //return redirect('/')->with('success', 'Success, product now available to buyers');
             return redirect('/')->with('success', 'Success, product now available to buyers');
 
         }catch (\Exception $e){

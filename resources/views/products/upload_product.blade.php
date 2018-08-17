@@ -6,6 +6,8 @@
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
 
+                    @include('partials.flash')
+
                     <div class="row">
                         <div class="col col-md-1">
                         </div>
