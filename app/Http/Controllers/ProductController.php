@@ -45,4 +45,18 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Sorry something went wrong please try again later');
         }
     }
+
+
+    public function allproducts(){
+        $products=Product::all();
+
+        return view('products.allproducts',compact('products'));
+    }
+
+    public function placeBid($userid, $product){
+
+        $product=Product::where('id',$product)->increment('bidders', 1);
+
+        return redirect()->back()->with('info','Successfully placed bid');
+    }
 }

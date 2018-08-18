@@ -21,6 +21,10 @@ Route::get('/upload', function () {
 
 Route::post('/upload-product', 'ProductController@uploadProduct');
 
+Route::get('/all-products', 'ProductController@allproducts');
+
+Route::get('/place-bid/{userid}/{product}', 'ProductController@placeBid');
+
 
 Auth::routes();
 
