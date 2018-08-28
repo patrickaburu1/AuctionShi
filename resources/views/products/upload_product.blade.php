@@ -49,9 +49,9 @@
                                             <div class="col-12 col-md-9">
                                                 <select name="category" id="select" class="form-control" required>
                                                     <option value="0" disabled selected>Please select Category</option>
-                                                    <option value="1">Electronic</option>
-                                                    <option value="2">Kitchen</option>
-                                                    <option value="3">Furniture</option>
+                                                    @foreach($categories as $category)
+                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

@@ -15,15 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/upload', function () {
-    return view('products.upload_product');
+
+Route::get('modal', function () {
+    return view('products.modal');
 });
+
+
+Route::get('/upload','ProductController@index');
 
 Route::post('/upload-product', 'ProductController@uploadProduct');
 
 Route::get('/all-products', 'ProductController@allproducts');
 
-Route::get('/place-bid/{userid}/{product}', 'ProductController@placeBid');
+Route::post('/place-bid/{product}', 'ProductController@placeBid');
 
 
 Auth::routes();

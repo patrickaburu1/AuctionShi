@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Bid;
+use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
 
+    /*view to add product*/
     public function index(){
-        return redirect('home');
+
+        $categories=Category::all();
+
+        return view('products.upload_product',compact('categories'));
     }
+
     public function uploadProduct(Request $request){
 
         request()->validate([
@@ -53,9 +60,17 @@ class ProductController extends Controller
         return view('products.allproducts',compact('products'));
     }
 
-    public function placeBid($userid, $product){
+    public function placeBid(Request $request, $product_id){
 
-        $product=Product::where('id',$product)->increment('bidders', 1);
+        $userid=1;
+
+        $product=Product::where('id',$product_id)->increment('bidders', 1);
+
+        $bid=new Bid();
+        $bid->user_id=$userid;
+        $bid->product_id=$product_id;
+        $bid->amount=$request->amount;
+        $bid->save();
 
         return redirect()->back()->with('info','Successfully placed bid');
     }
