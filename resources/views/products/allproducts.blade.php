@@ -78,13 +78,13 @@
                                                 class="text-primary col-md-6">{{$product->sell_by_date}}</i></div>
                                     <div class="card-title"><p class="card-text">{{$product->description}}</p></div>
                                     <div class="card-title row"><label class="col-md-4">Amount in KES:: </label><input name="amount"
-                                                class="col-md-4 form-control" type="text" placeholder="e.g 5000"></div>
+                                                class="col-md-4 form-control" type="text" placeholder="e.g 5000" required></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer ">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary" >Place Bid</button>
                     </div>
                     </form>
