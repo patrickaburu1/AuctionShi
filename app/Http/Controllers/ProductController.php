@@ -57,7 +57,9 @@ class ProductController extends Controller
     public function allproducts(){
         $products=Product::all();
 
-        return view('products.allproducts',compact('products'));
+        $categories=Category::all();
+
+        return view('products.allproducts',compact('products','categories'));
     }
 
     public function placeBid(Request $request, $product_id){

@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 
 Route::get('modal', function () {
@@ -21,13 +21,20 @@ Route::get('modal', function () {
 });
 
 
-Route::get('/upload','ProductController@index');
+Route::get('/', 'ProductController@allproducts');
+
+Route::get('/dashboard', 'ProductController@allproducts');
+
+Route::get('/upload-product','ProductController@index');
 
 Route::post('/upload-product', 'ProductController@uploadProduct');
 
 Route::get('/all-products', 'ProductController@allproducts');
 
 Route::post('/place-bid/{product}', 'ProductController@placeBid');
+
+/*products based on category*/
+Route::get('/category/{category}', 'CategoryController@productsBasedOnCategory');
 
 
 Auth::routes();

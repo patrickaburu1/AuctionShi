@@ -9,37 +9,27 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="active has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="{{url('dashboard')}}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
+
                             </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>Product Categories</a>
+                                <i class="fas fa-shopping-cart"></i>Product Categories</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="button.html">Placed Bids</a>
-                                    <a href="button.html">Won  Bids</a>
-                                    <a href="button.html">Won  Bids</a>
-                                </li>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}"></option>
+                                    <li >
+                                        <a class="fas fa-tachometer-alt" href="{{url('category/'.$category->id)}}"> {{$category->name}}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>Bids</a>
+                                <i class="fas fa-list"></i>Bids</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="button.html">Placed Bids</a>
@@ -51,7 +41,7 @@
 
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-shopping-cart"></i>My Products</a>
+                                <i class="fas fa-shopping-basket"></i>My Products</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="login.html">Running Products</a>
@@ -63,7 +53,7 @@
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>My Account</a>
+                                <i class="fa fa-credit-card"></i>My Account</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="button.html">To-up</a>

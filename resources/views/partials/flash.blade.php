@@ -31,3 +31,15 @@
     </div>
 
 @endif
+
+{{--add item title--}}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="overview-wrap">
+            <h2 class="title-1"></h2>
+            <a href="{{url('upload-product')}}" class="au-btn au-btn-icon au-btn--blue">
+                <i class="zmdi zmdi-plus"></i>sell item</a>
+        </div>
+    </div>
+</div>
