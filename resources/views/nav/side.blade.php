@@ -26,42 +26,48 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
-                        </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
-                        </li>
-                        <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-desktop"></i>Product Categories</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="button.html">Placed Bids</a>
+                                    <a href="button.html">Won  Bids</a>
+                                    <a href="button.html">Won  Bids</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
+                                <i class="fas fa-desktop"></i>Bids</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="login.html">Login</a>
+                                    <a href="button.html">Placed Bids</a>
+                                    <a href="button.html">Won  Bids</a>
+                                    <a href="button.html">Won  Bids</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fas fa-shopping-cart"></i>My Products</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li>
+                                    <a href="login.html">Running Products</a>
+                                    <a href="login.html">Closed Bid </a>
+                                    <a href="login.html">Sold Products </a>
                                 </li>
 
                             </ul>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
+                                <i class="fas fa-desktop"></i>My Account</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="button.html">Button</a>
+                                    <a href="button.html">To-up</a>
+                                    <a href="button.html">Transaction History</a>
                                 </li>
                             </ul>
                         </li>
