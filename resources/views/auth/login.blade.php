@@ -1,69 +1,129 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
+    <!-- Title Page-->
+    <title>Auctioner </title>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+    <!-- Fontfaces CSS-->
+    <link href="{{asset('css/font-face.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+    <!-- Bootstrap CSS-->
+    <link href="{{asset('vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
 
+    <!-- Vendor CSS-->
+    <link href="{{asset('vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{assert('vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('vendor/wow/animate.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('vendor/css-hamburgers/hamburgers.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('vendor/slick/slick.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{{asset('css/theme.css')}}" rel="stylesheet" media="all">
+
+</head>
+
+<body class="animsition">
+<div class="page-wrapper">
+    <div class="page-content--bge5">
+        <div class="container">
+            <div class="login-wrap">
+                <div class="login-content">
+                    <div class="login-logo">
+                        <a href="#">
+                            <img src="images/icon/logo.png" alt="ACTIONEER" width="179" height="52">
+                        </a>
+                    <div class="login-form">
+                        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                            {{ csrf_field() }}
+                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                                <div class="col-md-12">
+                                <input id="email" class="au-input au-input--full" type="email" name="email" placeholder="Email">
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                 <label for="password" class="col-md-4 control-label">Password</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
+                                <div class="col-md-12">
+                                <input id="password" class="au-input au-input--full" type="password" name="password" placeholder="Password">
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
+                            <div class="login-checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember">Remember Me
+                                </label>
+                                <label>
+                                    <a href="{{url('login')}}}">Forgotten Password?</a>
+                                </label>
                             </div>
+                            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
+
+                        </form>
+                        <div class="register-link">
+                            <p>
+                                Don't you have account?
+                                <a href="{{url('register')}}">Sign Up Here</a>
+                            </p>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
-@endsection
+</div>
+
+<!-- Jquery JS-->
+<script src="{{asset('vendor/jquery-3.2.1.min.js')}}"></script>
+<!-- Bootstrap JS-->
+<script src="{{asset('vendor/bootstrap-4.1/popper.min.js')}}"></script>
+<script src="{{asset('vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>
+<!-- Vendor JS       -->
+<script src="{{asset('vendor/slick/slick.min.js')}}">
+</script>
+<script src="{{asset('vendor/wow/wow.min.js')}}"></script>
+<script src="{{asset('vendor/animsition/animsition.min.js')}}"></script>
+<script src="{{asset('vendor/bootstrap-progressbar/bootstrap-progressbar.min.js')}}">
+</script>
+<script src="{{asset('vendor/counter-up/jquery.waypoints.min.js')}}"></script>
+<script src="{{asset('vendor/counter-up/jquery.counterup.min.js')}}">
+</script>
+<script src="{{asset('vendor/circle-progress/circle-progress.min.js')}}"></script>
+<script src="{{asset('vendor/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+<script src="{{asset('vendor/chartjs/Chart.bundle.min.js')}}"></script>
+<script src="{{asset('vendor/select2/select2.min.js')}}">
+</script>
+
+<!-- Main JS-->
+<script src="{{asset('js/main.js')}}"></script>
+
+</body>
+
+</html>
+<!-- end document-->

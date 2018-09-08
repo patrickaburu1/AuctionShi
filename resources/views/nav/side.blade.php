@@ -1,9 +1,9 @@
  <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
-                </a>
+                <span class="h1" href="#">
+                     ACTIONEER
+                </span>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
@@ -44,9 +44,10 @@
                                 <i class="fas fa-shopping-basket"></i>My Products</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="login.html">Running Products</a>
-                                    <a href="login.html">Closed Bid </a>
-                                    <a href="login.html">Sold Products </a>
+                                    <a href="{{url('my-products')}}"> Products</a>
+                                    <a href="{{url('running-products')}}">Running Products</a>
+                                    <a href="{{url('sold-products')}}">Sold Products</a>
+                                    <a href="{{url('suspended-products')}}">Suspended Products</a>
                                 </li>
 
                             </ul>

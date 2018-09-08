@@ -6,6 +6,7 @@ use App\Bid;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -19,6 +20,8 @@ class ProductController extends Controller
     }
 
     public function uploadProduct(Request $request){
+
+        $user_id=Auth::user()->id;
 
         request()->validate([
             'image' => 'required|file|mimes:jpeg,bmp,png|max:2048',
@@ -38,7 +41,7 @@ class ProductController extends Controller
         $product->category_id = $request->category;
         $product->product_image = $productImage;
         $product->sell_by_date = $request->sellby_date;
-        $product->user_id = 1;
+        $product->user_id = $user_id;
 
         try {
 
@@ -63,13 +66,12 @@ class ProductController extends Controller
     }
 
     public function placeBid(Request $request, $product_id){
-
-        $userid=1;
+        $user_id=Auth::user()->id;
 
         $product=Product::where('id',$product_id)->increment('bidders', 1);
 
         $bid=new Bid();
-        $bid->user_id=$userid;
+        $bid->user_id=$user_id;
         $bid->product_id=$product_id;
         $bid->amount=$request->amount;
         $bid->save();

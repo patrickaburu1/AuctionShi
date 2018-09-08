@@ -25,19 +25,36 @@ Route::get('/', 'ProductController@allproducts');
 
 Route::get('/dashboard', 'ProductController@allproducts');
 
-Route::get('/upload-product','ProductController@index');
 
-Route::post('/upload-product', 'ProductController@uploadProduct');
 
 Route::get('/all-products', 'ProductController@allproducts');
 
-Route::post('/place-bid/{product}', 'ProductController@placeBid');
+
 
 /*products based on category*/
 Route::get('/category/{category}', 'CategoryController@productsBasedOnCategory');
 
 
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ProductController@allproducts')->name('home');
 
+/*protect routes*/
+Route::group(['middleware'=>'auth'], function () {
+    Route::get('/upload-product','ProductController@index');
+
+    Route::post('/upload-product', 'ProductController@uploadProduct');
+
+    Route::any('/place-bid/{product}', 'ProductController@placeBid');
+
+
+    Route::get('/my-products', 'MyProductsController@myProducts');
+
+    Route::get('/running-products', 'MyProductsController@runningProducts');
+
+    Route::get('/sold-products', 'MyProductsController@soldProducts');
+
+    Route::get('/suspended-products', 'MyProductsController@suspendedProducts');
+
+});
