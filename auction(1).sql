@@ -1,4 +1,4 @@
--- Adminer 4.6.2 MySQL dump
+-- Adminer 4.6.3 MySQL dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -9,9 +9,12 @@ DROP TABLE IF EXISTS `bids`;
 CREATE TABLE `bids` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `amount` int(11) NOT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
+  `seller_price` int(11) DEFAULT '0',
   `product_id` int(11) NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
-  `status` varchar(255) NOT NULL,
+  `status` varchar(255) DEFAULT '0' COMMENT '0 placed 1 won 2 withdrawn',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
@@ -20,6 +23,12 @@ CREATE TABLE `bids` (
   CONSTRAINT `bids_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `bids` (`id`, `amount`, `product_name`, `user_name`, `seller_price`, `product_id`, `user_id`, `status`, `created_at`) VALUES
+(12,	50000,	'lAPTOP',	'patrick kaburu',	600000,	15,	1,	'1',	'2018-09-09 08:56:26'),
+(13,	110000,	'sabaru forester',	'patrick kaburu',	800000,	11,	1,	'0',	'2018-09-09 08:47:24'),
+(14,	2000000,	'sabaru forester',	'patrick kaburu',	800000,	11,	1,	'0',	'2018-09-09 08:51:46'),
+(15,	9000,	'table',	'patrick kaburu',	8787,	16,	1,	'0',	'2018-09-09 09:01:04'),
+(16,	10000,	'table',	'patrick',	8787,	16,	3,	'1',	'2018-09-09 09:04:27');
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
@@ -30,7 +39,8 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `categories` (`id`, `name`, `description`) VALUES
-(1,	'electronics',	'ele');
+(1,	'electronics',	'ele'),
+(2,	'kitnen',	'');
 
 SET NAMES utf8mb4;
 
@@ -77,13 +87,20 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `products` (`id`, `name`, `description`, `amount`, `status`, `category_id`, `bidders`, `user_id`, `sell_by_date`, `product_image`, `created_at`, `updated_at`) VALUES
-(4,	'house',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	98343,	1,	1,	76343,	1,	'2018-09-04',	'http://localhost/laravel/shi/public/productImages/1534427039.jpg',	'2018-08-18 09:07:41',	'2018-08-18 09:07:41'),
-(5,	'itel 7',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	676,	1,	1,	3,	1,	'2018-08-15',	'http://localhost/laravel/shi/public/productImages/1534438134.jpg',	'2018-08-18 09:03:41',	'2018-08-18 09:03:41'),
-(6,	'One bed room',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	87000,	1,	1,	4,	1,	'2018-08-15',	'http://localhost/laravel/shi/public/productImages/1534438179.jpg',	'2018-08-18 09:03:24',	'2018-08-18 09:03:24'),
-(7,	'bed 6*6',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	98,	1,	1,	1,	1,	'2018-08-07',	'http://localhost/laravel/shi/public/productImages/1534438420.jpg',	'2018-08-18 09:03:58',	'2018-08-18 09:03:58'),
-(8,	'Gas 6kg ',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	2500,	1,	1,	0,	1,	'2018-08-14',	'http://localhost/laravel/shi/public/productImages/1534438465.jpg',	'2018-08-18 09:04:18',	'2018-08-18 09:04:18'),
-(9,	'Blender',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	1500,	1,	1,	1,	1,	'2018-09-05',	'http://localhost/laravel/shi/public/productImages/1534438602.jpg',	'2018-08-18 09:04:37',	'2018-08-18 09:04:37'),
-(10,	'Study Table',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	500,	1,	1,	0,	1,	'2018-07-10',	'http://localhost/laravel/shi/public/productImages/1534484289.png',	'2018-08-18 09:04:54',	'2018-08-18 09:04:54');
+(4,	'house',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	98343,	2,	1,	76350,	1,	'2018-09-04',	'http://localhost/AuctionShi/public/productImages/1535172254.jpg',	'2018-09-08 18:45:01',	'2018-09-08 15:45:01'),
+(5,	'itel 7',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	676,	2,	1,	4,	1,	'2018-08-15',	'http://localhost/AuctionShi/public/productImages/1535172254.jpg',	'2018-09-09 07:29:35',	'2018-09-09 04:29:35'),
+(6,	'One bed room',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	87000,	3,	1,	5,	1,	'2018-08-15',	'http://localhost/AuctionShi/public/productImages/1535172254.jpg',	'2018-09-08 08:44:41',	'2018-09-08 08:44:41'),
+(7,	'bed 6*6',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	98,	2,	1,	1,	1,	'2018-08-07',	'http://localhost/AuctionShi/public/productImages/1535172254.jpg',	'2018-09-09 07:29:46',	'2018-09-09 04:29:46'),
+(8,	'Gas 6kg ',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	2500,	2,	1,	0,	1,	'2018-08-14',	'http://localhost/AuctionShi/public/productImages/1535172254.jpg',	'2018-09-08 08:45:31',	'2018-09-08 08:45:31'),
+(9,	'Blender',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	1500,	2,	1,	1,	1,	'2018-09-05',	'http://localhost/AuctionShi/public/productImages/1535172254.jpg',	'2018-09-09 07:29:43',	'2018-09-09 04:29:43'),
+(10,	'Study Table',	'Features:\r\n\r\n3 Bedrooms (2 en suite)\r\n\r\n',	500,	2,	1,	0,	1,	'2018-07-10',	'http://localhost/AuctionShi/public/productImages/1535172254.jpg',	'2018-09-08 08:44:58',	'2018-09-08 08:44:58'),
+(11,	'sabaru forester',	'twin turbo, 2l',	800000,	1,	1,	3,	1,	'2018-08-23',	'http://localhost/AuctionShi/public/productImages/1535172254.jpg',	'2018-09-09 08:51:04',	'2018-09-09 05:51:04'),
+(12,	'mwiko',	'ugali woden',	100,	1,	2,	1,	1,	'2018-09-04',	'http://localhost/AuctionShi/public/productImages/1535880098.jpeg',	'2018-09-02 09:22:11',	'2018-09-02 06:22:11'),
+(13,	'screen',	'43inch\r\nlg smart',	500,	2,	1,	0,	4,	'2018-09-25',	'http://192.168.100.10/AuctionShi/public/productImages/1536432662.jpg',	'2018-09-08 18:54:12',	'2018-09-08 18:54:12'),
+(14,	'screen',	'srdfghjbkm.,sdfghjkl',	60000,	2,	1,	1,	4,	'2018-09-28',	'http://192.168.100.10/AuctionShi/public/productImages/1536478546.jpg',	'2018-09-09 07:36:43',	'2018-09-09 04:36:43'),
+(15,	'lAPTOP',	'FGDHJHKZKRGFHJDSKLAGHDJSK',	600000,	2,	1,	1,	4,	'2018-09-27',	'http://192.168.100.10/AuctionShi/public/productImages/1536478909.jpg',	'2018-09-09 08:56:26',	'2018-09-09 05:56:26'),
+(16,	'table',	'fgshdjkdldfrsjkalx;sdjk',	8787,	2,	2,	3,	4,	'2018-09-12',	'http://192.168.100.10/AuctionShi/public/productImages/1536483517.png',	'2018-09-09 09:04:27',	'2018-09-09 06:04:27'),
+(17,	'mwiko new',	'wodeen',	30000,	1,	2,	0,	4,	'2018-09-28',	'http://192.168.100.10/AuctionShi/public/productImages/1536483636.jpg',	'2018-09-09 06:00:36',	'2018-09-09 06:00:36');
 
 DROP TABLE IF EXISTS `transactions`;
 CREATE TABLE `transactions` (
@@ -117,6 +134,9 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1,	'patrick kaburu',	'patrickaburu1@gmail.com',	'$2y$10$IANTe70jpYdmj.Dir5slJuJt9jAF..iwehmz3SmYJdVVbe36bFD2u',	'1',	'1',	'Dvdgyu3j7cyRgpVPfPvuOnwBZPEntCaAEXK0nfVLkC4U3xTCXixjIWVKWp2L',	'2018-08-13 05:28:07',	'2018-08-13 05:28:07');
+(1,	'patrick kaburu',	'patrickaburu1@gmail.com',	'$2y$10$IANTe70jpYdmj.Dir5slJuJt9jAF..iwehmz3SmYJdVVbe36bFD2u',	'1',	'2',	'3gz9IAUtEoCWZLxBFYT1y1Kc1Jzlf8V2gnSP6gqjnsBfw0h5t0FEU6btcPn9',	'2018-08-13 05:28:07',	'2018-09-09 04:28:01'),
+(2,	'wanjiku',	'nary@gmail.com',	'$2y$10$brsYaxRQzb3J7I6nE.sIDORfV.HaZaLHpW7nKrZW.2OGBsabUredq',	'1',	'1',	'NvjKbMJvUmsveyYJyKIYxTYAZHE5RUjBwEJGSuKe3TIyV3seeahx1ytonDe5',	'2018-09-08 07:36:50',	'2018-09-08 07:36:50'),
+(3,	'patrick',	'p@gmail.com',	'$2y$10$HlTRkGeWyXZTKlqKWfoWAejTkReGTcnRt96r7pOO/8NvNVzLqGbKC',	'1',	'1',	'BcZEZYICKJeYSIJOLSe50sTX3Ws98p9M1my0bhJiX7z5O5uTL3ooyaeYwxnk',	'2018-09-08 15:27:05',	'2018-09-08 15:27:05'),
+(4,	'Mary Kariuki',	'mary@gmail.com',	'$2y$10$beCD1HrZeZ8z.15HPY0XVexwlCePZyAuqG5JqgxeXluCtpgqOG3Py',	'1',	'1',	'lOJ7wK1CJnWJkGJxFufit7CS43ISxmkAc8L4zJUrkLSlaQ8ZCfhYcQWTekp7',	'2018-09-08 15:37:02',	'2018-09-08 15:37:02');
 
--- 2018-08-18 09:22:53
+-- 2018-09-09 09:21:02
