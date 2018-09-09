@@ -66,16 +66,28 @@ class ProductController extends Controller
     }
 
     public function placeBid(Request $request, $product_id){
-        $user_id=Auth::user()->id;
+        $user=Auth::user();
+        $product=Product::where('id',$product_id)->first();
 
-        $product=Product::where('id',$product_id)->increment('bidders', 1);
+        try {
 
-        $bid=new Bid();
-        $bid->user_id=$user_id;
-        $bid->product_id=$product_id;
-        $bid->amount=$request->amount;
-        $bid->save();
+            Product::where('id', $product_id)->increment('bidders', 1);
 
-        return redirect()->back()->with('info','Successfully placed bid');
+            $bid = new Bid();
+            $bid->user_id = $user->id;
+            $bid->product_id = $product_id;
+            $bid->product_name = $product->name;
+            $bid->user_name = $user->name;
+            $bid->seller_price = $product->amount;
+            $bid->amount = $request->amount;
+            $bid->save();
+
+            return redirect()->back()->with('info', 'Successfully placed bid');
+
+        }catch (\Exception $e){
+            return redirect()->back()->with('error', 'Sorry something went wrong please try again later');
+        }
     }
+
+
 }

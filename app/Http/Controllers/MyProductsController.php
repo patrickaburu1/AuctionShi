@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Bid;
 use App\Category;
 use App\Product;
+use App\User;
+use DemeterChain\B;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,5 +60,26 @@ class MyProductsController extends Controller
         $products=Product::where([['user_id',$user_id],['status',3]])->get();
 
         return view('products.suspendedproducts',compact('categories','products'));
+    }
+
+    /*close bid*/
+    public function closeBid($product_id, $bid_id){
+
+        try {
+
+            $give_bidder=Bid::find($bid_id);
+            $give_bidder->status=1;
+            $give_bidder->save();
+
+            $close = Product::find($product_id);
+            $close->status = 2;/*change product status to closed*/
+            $close->save();
+
+            return redirect()->back()->with('info', 'Successfully closed bid');
+        }
+        catch (\Exception $e){
+            return redirect('running-products')->with('error', 'Sorry something went wrong please try again later');
+        }
+
     }
 }

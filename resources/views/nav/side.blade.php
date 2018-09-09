@@ -32,9 +32,8 @@
                                 <i class="fas fa-list"></i>Bids</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="button.html">Placed Bids</a>
-                                    <a href="button.html">Won  Bids</a>
-                                    <a href="button.html">Won  Bids</a>
+                                    <a href="{{url('placed-bids')}}">Placed Bids</a>
+                                    <a href="{{url('won-bids')}}">Won  Bids</a>
                                 </li>
                             </ul>
                         </li>

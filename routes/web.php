@@ -57,4 +57,13 @@ Route::group(['middleware'=>'auth'], function () {
 
     Route::get('/suspended-products', 'MyProductsController@suspendedProducts');
 
+    Route::get('/close-bid/{product_id}/{bid_id}', 'MyProductsController@closeBid');
+
+    Route::get('/bidders/{product_id}', 'BiddersController@bidders');
+
+
+    Route::get('/won-bids', 'BiddersController@wonBids');
+
+    Route::get('/placed-bids', 'BiddersController@placedBids');
+
 });

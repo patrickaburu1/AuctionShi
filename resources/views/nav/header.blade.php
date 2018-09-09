@@ -134,7 +134,7 @@
                             @if(\Illuminate\Support\Facades\Auth::check()==true)
                             <div class="account-item clearfix js-item-menu">
                             <div class="image">
-                                <img src="images/icon/avatar-01.jpg" alt="Name"/>
+                                <img src="{{asset('images/icon/avatar-01.jpg')}}" alt="Name"/>
                             </div>
                             <div class="content">
                                 <a class="js-acc-btn" href="#">{{Auth::user()->name}}</a>

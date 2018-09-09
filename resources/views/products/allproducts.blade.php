@@ -33,7 +33,7 @@
                                                     data-target="#{{$product->id}}">
                                                 Place Bid
                                             </button>
-                                            <button class="col-md-4 btn-primary"> more info</button>
+                                            <button class="col-md-5 btn-primary"> view</button>
                                         </div>
                                     </div>
                                 </div>
