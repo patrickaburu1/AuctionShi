@@ -9,6 +9,7 @@ use App\User;
 use DemeterChain\B;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MyProductsController extends Controller
 {
@@ -75,10 +76,17 @@ class MyProductsController extends Controller
             $close->status = 2;/*change product status to closed*/
             $close->save();
 
-            return redirect()->back()->with('info', 'Successfully closed bid');
+
+            DB::table('bids')->where('product_id',$product_id)->update(array('product_status'=>2));
+/*
+            $close_bids=Bid::where('product_id',$product_id);
+            $close_bids->product_status=1;
+            $close_bids->save();*/
+
+            return  redirect('/running-products')->with('info', 'Successfully given out bid');
         }
         catch (\Exception $e){
-            return redirect('running-products')->with('error', 'Sorry something went wrong please try again later');
+            return redirect()->back()->with('error', 'Sorry something went wrong please try again later');
         }
 
     }

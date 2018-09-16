@@ -44,4 +44,14 @@ class BiddersController extends Controller
 
         return view('products.placedbids',compact('placedbids','categories'));
     }
+
+    /*withdraw bid*/
+    public function withdrawBid($bid_id){
+
+            $give_bidder = Bid::find($bid_id);
+            $give_bidder->status = 2;
+            $give_bidder->save();
+
+        return  redirect('/placed-bids')->with('info', 'Successfully withdrawn bid');
+        }
 }

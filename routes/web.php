@@ -66,4 +66,7 @@ Route::group(['middleware'=>'auth'], function () {
 
     Route::get('/placed-bids', 'BiddersController@placedBids');
 
+
+    Route::get('/withdraw-bid/{bid_id}', 'BiddersController@withdrawBid');
+
 });

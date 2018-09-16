@@ -18,24 +18,39 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Seller Price (KES)</th>
-
                                         <th>Bidder Price (KES)</th>
+                                        <th>Product Status</th>
                                         <th>Bidded on</th>
+                                        <th>ACTION</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($placedbids as $won)
+                                    @foreach($placedbids as $placedbid)
                                         <tr class="tr">
-                                            <td>{{$won->product_name}}</td>
+                                            <td>{{$placedbid->product_name}}</td>
                                             <td>
-                                                <span class="status--denied">{{number_format($won->seller_price)}}</span>
+                                                <span class="status--denied">{{number_format($placedbid->seller_price)}}</span>
                                             </td>
 
                                             <td>
-                                                <span class="status--process">{{number_format($won->amount)}}</span>
+                                                <span class="status--process">{{number_format($placedbid->amount)}}</span>
                                             </td>
-                                            <td class="desc">{{$won->created_at}}</td>
+                                            <td>
+                                                @if($placedbid->product_status==0)
+                                                <span class="status--process">Running</span>
+                                                    @else
+                                                    <span class="status--denied">Bid Closed</span>
+                                                    @endif
+                                            </td>
+                                            <td class="desc">{{$placedbid->created_at}}</td>
 
+                                            <td>
+                                                @if($placedbid->product_status==0)
+                                                    <a href="{{url('withdraw-bid/'.$placedbid->id)}}"> <button class="btn btn-danger">Withdraw Bid</button></a>
+                                                @else
+                                                    <a  href="#"> <button disabled class="btn btn-danger">Withdraw Bid</button></a>
+                                                @endif
+                                            </td>
                                         </tr>
                                         <tr class="spacer"></tr>
                                     @endforeach

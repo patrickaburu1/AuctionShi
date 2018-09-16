@@ -24,7 +24,7 @@ class ProductController extends Controller
         $user_id=Auth::user()->id;
 
         request()->validate([
-            'image' => 'required|file|mimes:jpeg,bmp,png|max:2048',
+            'image' => 'required|file|mimes:jpeg,bmp,png|max:8048',
         ]);
 
         $url=  url('/');
@@ -58,7 +58,7 @@ class ProductController extends Controller
 
 
     public function allproducts(){
-        $products=Product::where('status',1)->get();
+        $products=Product::where('status',1)->orderby('id','DESC')->get();
 
         $categories=Category::all();
 
