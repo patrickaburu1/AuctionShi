@@ -1,7 +1,7 @@
 @extends('nav.nav')
 
 @section('content')
-    <div class="page-container">
+    <div class="page-container welcome2">
         <div class="main-content">
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
@@ -11,7 +11,7 @@
 
                     <div class="row">
                         @foreach($products as $product)
-                            <div class="col-md-3">
+                            <div class="col-md-3 ">
                                 <div class="card">
                                     <img class="card-img-bottom" src="{{$product->product_image}}"
                                          style="height: 240px; width: 560px; " alt="Card image cap">
