@@ -1,7 +1,7 @@
 @extends('nav.nav')
 
 @section('content')
-    <div class="page-container welcome2">
+    <div class="page-container ">
         <div class="main-content">
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
@@ -12,34 +12,37 @@
                     <div class="row">
                         @foreach($products as $product)
                             <div class="col-md-3 ">
-                                <div class="card">
+                                <div class="card ">
                                     <img class="card-img-bottom" src="{{$product->product_image}}"
-                                         style="height: 240px; width: 560px; " alt="Card image cap">
+                                         style="height: 240px; width: 560px; " >
                                     <div class="card-img-overlay ">
                                         <div class="text-dark">{{$product->name}}</div>
                                     </div>
                                     <div class="card-body">
                                         <h4 class="card-title mb-3 col-md-12">{{$product->name}}</h4>
-                                        <div class="card-title mb-3 "><span class="col-md-6 text-dark">Price::
-                                                KES <i class="text-primary">{{number_format($product->amount)}}</i></span><span
-                                                    class="col-md-6 ">  {{number_format($product->bidders)}} <i
-                                                        class="text-primary"> Bidders</i></span></div>
                                         <div class="card-title"><span
-                                                    class="card-text col-md-6">Bid closes on::  </span> <i
-                                                    class="text-primary col-md-6">{{$product->sell_by_date}}</i></div>
-                                        <div class="card-title"><p class="card-text">{{$product->description}}</p></div>
+                                                    class="text-dark h5 col-md-6">Price  ::          </span> <i
+                                                    class="text-dark h5 col-md-6">{{number_format($product->amount)}}</i></div>
+                                        <div class="card-title"><span
+                                                    class="text-dark h5 col-md-6">No. of Bidder  ::  </span> <i
+                                                    class="text-dark h5 col-md-6">{{number_format($product->bidders)}}</i></div>
+                                        <div class="card-title"><span
+                                                    class="text-dark h5 col-md-6">Bid closes on::  </span> <i
+                                                    class="text-dark h5 col-md-6">{{$product->sell_by_date}}</i></div>
+                                        <div class="card-title"><span
+                                                    class="text-dark h5 col-md-6">Description :: </span> <i
+                                                    class="text-dark h5 col-md-6">{{$product->description}}</i></div>
+
                                         <div>
                                             <button class="col-md-6 btn-primary" type="button" data-toggle="modal"
                                                     data-target="#{{$product->id}}">
                                                 Place Bid
                                             </button>
-                                            <button class="col-md-5 btn-primary"> view</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             {{-- href="{{url('place-bid/'.'1'.'/'.$product->id)}}"--}}
-
                         @endforeach
                     </div>
 
@@ -67,7 +70,7 @@
                                 <img class="card-img-bottom" src="{{$product->product_image}}"
                                      style="height: 240px; width: 560px; " alt="Card image cap">
                                 <div class="card-img-overlay ">
-                                    <div class="text-dark">{{$product->name}}</div>
+                                    <div class="text-dark h5">{{$product->name}}</div>
                                 </div>
                                 <div class="card-body">
                                     <h4 class="card-title mb-6 col-md-12">{{$product->name}}</h4>
@@ -77,7 +80,8 @@
                                                     class=" col-md-3text-primary"> Bidders</i></div>
                                     <div class="card-title"><span class="card-text col-md-6">Bid closes on::  </span> <i
                                                 class="text-primary col-md-6">{{$product->sell_by_date}}</i></div>
-                                    <div class="card-title"><p class="card-text">{{$product->description}}</p></div>
+                                    <div class="card-title"><span class="card-text col-md-6">Description::  </span> <i
+                                                class="text-primary col-md-6">{{$product->description}}</i></div>
                                     <div class="card-title row"><label class="col-md-4">Amount in KES:: </label><input name="amount"
                                                 class="col-md-4 form-control" type="text" placeholder="e.g 5000" required></div>
                                 </div>

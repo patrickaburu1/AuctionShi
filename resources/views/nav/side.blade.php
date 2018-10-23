@@ -56,7 +56,7 @@
                                 <i class="fa fa-credit-card"></i>My Account</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="button.html">To-up</a>
+                                    <a href="{{url('top-up')}}">To-up</a>
                                     <a href="button.html">Transaction History</a>
                                 </li>
                             </ul>

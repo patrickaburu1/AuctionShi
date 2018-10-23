@@ -69,4 +69,9 @@ Route::group(['middleware'=>'auth'], function () {
 
     Route::get('/withdraw-bid/{bid_id}', 'BiddersController@withdrawBid');
 
+
+    Route::get('/top-up', 'AccountController@index');
+
+    Route::post('/top-up', 'AccountController@topup');
+
 });
