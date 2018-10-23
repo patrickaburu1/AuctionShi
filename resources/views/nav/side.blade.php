@@ -57,7 +57,7 @@
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="{{url('top-up')}}">To-up</a>
-                                    <a href="button.html">Transaction History</a>
+                                    <a href="{{url('transactions')}}">Transaction History</a>
                                 </li>
                             </ul>
                         </li>

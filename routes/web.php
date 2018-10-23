@@ -73,5 +73,6 @@ Route::group(['middleware'=>'auth'], function () {
     Route::get('/top-up', 'AccountController@index');
 
     Route::post('/top-up', 'AccountController@topup');
+    Route::get('/transactions', 'AccountController@transactions');
 
 });
