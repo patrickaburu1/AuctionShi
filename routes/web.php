@@ -75,4 +75,13 @@ Route::group(['middleware'=>'auth'], function () {
     Route::post('/top-up', 'AccountController@topup');
     Route::get('/transactions', 'AccountController@transactions');
 
+
+    Route::get('/products', 'AdminController@products');
+
+    Route::get('/suspend-product/{productId}', 'AdminController@suspendProduct');
+
+    Route::get('/addcategory', 'AdminController@category');
+
+    Route::post('/add-category', 'AdminController@addCategory');
+
 });

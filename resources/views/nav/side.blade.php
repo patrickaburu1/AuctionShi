@@ -37,7 +37,6 @@
                                 </li>
                             </ul>
                         </li>
-
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-shopping-basket"></i>My Products</a>
@@ -61,6 +60,20 @@
                                 </li>
                             </ul>
                         </li>
+
+                        @if(\Illuminate\Support\Facades\Auth::user()->role==2)
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-shopping-basket"></i>Admin Tool</a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="{{url('products')}}"> Suspend Product</a>
+                                        <a href="{{url('manage-categories')}}"> Add Category</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        @endif
                     </ul>
                 </nav>
             </div>

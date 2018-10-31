@@ -40,10 +40,12 @@ class AccountController extends Controller
         /*first get all categories*/
         $categories=Category::all();
 
+        $balance=Transaction::where([['user_id',$user_id],['status',1]])->sum('amount');
+
         /*get all products*/
         $transactions=Transaction::where([['user_id',$user_id],['status',1]])->get();
 
-        return view('account.transactions',compact('categories','transactions'));
+        return view('account.transactions',compact('categories','transactions','balance'));
     }
 
     public function debitCredit($amount, $phone, $debituser ){
