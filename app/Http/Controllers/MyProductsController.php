@@ -67,7 +67,7 @@ class MyProductsController extends Controller
     /*close bid*/
     public function closeBid($product_id, $bid_id){
 
-        try {
+      /*  try {*/
 
             $give_bidder=Bid::find($bid_id);
 
@@ -77,17 +77,19 @@ class MyProductsController extends Controller
                 return redirect()->back()->with('error', 'Sorry, bidder have insufficient balance'.$bidderBalance);
             }
 
-            $biderCredit=Transaction::where([['user_id',$give_bidder->user_id],['status',1]])->first();
+            $biderCredit=Transaction::where([['user_id',$give_bidder->user_id],['status',1],['type','Deposit']])->first();
 
             /*log transaction*/
             $accounts=new AccountController();
             $debitCredit= $accounts->debitCredit($give_bidder->amount, $biderCredit->phone, $give_bidder->user_id);
 
+            $userinfo=User::where('id',$give_bidder->userId)->first();
             /*send message*/
-            $message="Test";
+            $message="Congratulations  you have won bid worth KES: "
+                .$give_bidder->amount." it will be available for delivery in the next 2 hrs";
+
             $sms=new SmsController();
             $sms->sendSms($debitCredit, $message);
-
 
             $give_bidder->status=1;
             $give_bidder->save();
@@ -104,10 +106,10 @@ class MyProductsController extends Controller
             $close_bids->save();*/
 
             return  redirect('/running-products')->with('info', 'Successfully given out bid');
-        }
+     /*   }
         catch (\Exception $e){
             return redirect()->back()->with('error', 'Sorry something went wrong please try again later');
-        }
+        }*/
 
     }
 }

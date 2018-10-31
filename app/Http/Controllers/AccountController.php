@@ -11,9 +11,13 @@ class AccountController extends Controller
 {
     public function index(){
 
+        $user_id=Auth::user()->id;
+
         $categories=Category::all();
 
-        return view('account.top_up',compact('categories'));
+        $balance=Transaction::where([['user_id',$user_id],['status',1]])->sum('amount');
+
+        return view('account.top_up',compact('categories','balance'));
     }
 
     public function topUp(Request $request){
@@ -48,9 +52,9 @@ class AccountController extends Controller
         /*deposit to seller*/
         $t=new Transaction();
         $t->amount=$amount-($amount*0.3);
-        $t->phone="123";
+        $t->phone=$phone;
         $t->user_id=$user_id;
-        $t->type="Deposit";
+        $t->type="Credit";
         $t->status=1;
         $t->save();
 
@@ -58,7 +62,7 @@ class AccountController extends Controller
         /*deposit to admin*/
         $t=new Transaction();
         $t->amount=($amount*0.3);
-        $t->phone="123";
+        $t->phone=$phone;
         $t->user_id=1;
         $t->type="Commission";
         $t->status=1;

@@ -5,11 +5,10 @@
         <div class="main-content">
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
-
                     @include('partials.flash')
                     <div class="row card " id="express">
                         <div class="col-md-6">
-                            <h3 class="title-5 m-b-35">TOP UP </h3>
+                            <h4 class="title-5 m-b-35">TOP UP     Balance::  KES {{$balance}}</h4>
                             <form method="post" action="{{url('top-up')}}">
                                 {{csrf_field()}}
                                 <input id="account_number" name="account_number" value="silicon1" type="hidden">
@@ -39,6 +38,7 @@
                             </form>
 
                         </div>
+
                     </div>
                 </div>
             </div>
