@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bid;
 use App\Category;
 use App\Product;
+use App\Transaction;
 use App\User;
 use DemeterChain\B;
 use Illuminate\Http\Request;
@@ -69,6 +70,25 @@ class MyProductsController extends Controller
         try {
 
             $give_bidder=Bid::find($bid_id);
+
+            $bidderBalance=Transaction::where([['user_id',$give_bidder->user_id],['status',1]])->sum('amount');
+
+            if($bidderBalance< $give_bidder->amount){
+                return redirect()->back()->with('error', 'Sorry, bidder have insufficient balance'.$bidderBalance);
+            }
+
+            $biderCredit=Transaction::where([['user_id',$give_bidder->user_id],['status',1]])->first();
+
+            /*log transaction*/
+            $accounts=new AccountController();
+            $debitCredit= $accounts->debitCredit($give_bidder->amount, $biderCredit->phone, $give_bidder->user_id);
+
+            /*send message*/
+            $message="Test";
+            $sms=new SmsController();
+            $sms->sendSms($debitCredit, $message);
+
+
             $give_bidder->status=1;
             $give_bidder->save();
 
