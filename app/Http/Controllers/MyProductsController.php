@@ -67,7 +67,7 @@ class MyProductsController extends Controller
     /*close bid*/
     public function closeBid($product_id, $bid_id){
 
-        try {
+       /* try {*/
 
             $give_bidder=Bid::find($bid_id);
 
@@ -105,10 +105,10 @@ class MyProductsController extends Controller
             $close_bids->save();*/
 
             return  redirect('/running-products')->with('info', 'Successfully given out bid');
-       }
+       /*}
         catch (\Exception $e){
             return redirect()->back()->with('error', 'Sorry something went wrong please try again later');
-        }
+        }*/
 
     }
 }

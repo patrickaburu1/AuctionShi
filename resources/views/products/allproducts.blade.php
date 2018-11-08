@@ -16,7 +16,13 @@
                                     <img class="card-img-bottom" src="{{$product->product_image}}"
                                          style="height: 240px; width: 560px; " >
                                     <div class="card-img-overlay ">
-                                        <div class="text-dark">{{$product->name}}</div>
+                                        <div class="text-dark">{{$product->name}}  <?php
+                                                $now=date("Y/m/d");
+                                                $date2=date_create($product->sell_by_date);
+                                                $date1=date_create($now);
+                                                $diff=date_diff($date1,$date2);
+                                                echo $diff->format("%a days");
+                                                ?></div>
                                     </div>
                                     <div class="card-body">
                                         <h4 class="card-title mb-3 col-md-12">{{$product->name}}</h4>
@@ -29,6 +35,15 @@
                                         <div class="card-title"><span
                                                     class="text-dark h5 col-md-6">Bid closes on::  </span> <i
                                                     class="text-dark h5 col-md-6">{{$product->sell_by_date}}</i></div>
+                                        <div class="card-title"><span
+                                                    class="text-dark h5 col-md-6">Bid ends in::  </span> <i
+                                                    class="text-dark h5 col-md-6"> <?php
+                                                $now=date("Y/m/d");
+                                                $date2=date_create($product->sell_by_date);
+                                                $date1=date_create($now);
+                                                $diff=date_diff($date1,$date2);
+                                                echo $diff->format("%a days");
+                                                ?></i></div>
                                         <div class="card-title"><span
                                                     class="text-dark h5 col-md-6">Description :: </span> <i
                                                     class="text-dark h5 col-md-6">{{$product->description}}</i></div>

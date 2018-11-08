@@ -138,12 +138,12 @@ INSERT INTO `transactions` (`id`, `type`, `user_id`, `product_id`, `amount`, `ph
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT '1 buyer/seller 2 admin',
-  `active` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT '0 inactive, 1 active',
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255),
+  `email` varchar(255) ,
+  `password` varchar(255) ,
+  `role` varchar(255) NOT NULL DEFAULT '1' COMMENT '1 buyer/seller 2 admin',
+  `active` varchar(255)  NOT NULL DEFAULT '1' COMMENT '0 inactive, 1 active',
+  `remember_token` varchar(100)  DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),

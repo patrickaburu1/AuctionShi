@@ -69,6 +69,10 @@ class ProductController extends Controller
         $user=Auth::user();
         $product=Product::where('id',$product_id)->first();
 
+        if ($user->id==$product->user_id){
+            return redirect()->back()->with('error', 'Sorry cant place bid on own product');
+        }
+
         try {
 
             Product::where('id', $product_id)->increment('bidders', 1);
