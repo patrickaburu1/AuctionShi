@@ -7,7 +7,7 @@
                 <div class="container-fluid">
 
                     @include('partials.flash')
-                    <div class="row">
+                    <div class="row" style="background-color: white">
                         <div class="col-md-12">
                             <!-- DATA TABLE -->
                             <h3 class="title-5 m-b-35">Transaction History   Balance::  KES {{$balance}}</h3>
@@ -15,21 +15,21 @@
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>Phone Number</th>
-                                        <th>Type</th>
-                                        <th>Amount</th>
-                                        <th>Date</th>
+                                       <th class="text-dark h4">Phone Number</th>
+                                       <th class="text-dark h4">Type</th>
+                                       <th class="text-dark h4">Amount</th>
+                                       <th class="text-dark h4">Date</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($transactions as $transaction)
                                         <tr class="tr">
-                                            <td>{{$transaction->phone}}</td>
+                                           <td class="text-dark h5">{{$transaction->phone}}</td>
                                             <td class="text-info">{{$transaction->type}}</td>
-                                            <td>
+                                           <td class="text-dark h5">
                                                 {{number_format($transaction->amount)}}
                                             </td>
-                                            <td class="desc">{{$transaction->created_at}}</td>
+                                            <td class="text-dark h5 desc">{{$transaction->created_at}}</td>
                                         </tr>
                                         <tr class="spacer"></tr>
                                     @endforeach

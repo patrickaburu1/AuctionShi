@@ -35,7 +35,7 @@
 
 </head>
 
-<body class="animsition">
+<body class="animsition" >
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
 

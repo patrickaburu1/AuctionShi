@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
    /*get product based on controller*/
     public function productsBasedOnCategory($category_id){
-        $products=Product::where('category_id',$category_id)->get();
+        $products=Product::where([['status',1],['category_id',$category_id]])->get();
 
         /*to be populated in dashboard*/
         $categories=Category::all();
