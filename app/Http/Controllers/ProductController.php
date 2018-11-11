@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bid;
 use App\Category;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,7 +59,10 @@ class ProductController extends Controller
 
 
     public function allproducts(){
-        $products=Product::where('status',1)->orderby('id','DESC')->get();
+        $now=Carbon::now();
+        $date=$now->toDateString();
+
+        $products=Product::where([['status',1],['sell_by_date','>',$date]])->orderby('id','DESC')->get();
 
         $categories=Category::all();
 
@@ -71,6 +75,16 @@ class ProductController extends Controller
 
         if ($user->id==$product->user_id){
             return redirect()->back()->with('error', 'Sorry cant place bid on own product');
+        }
+        $buyingPrice=$request->amount;
+        $sellingPrice=$product->amount;
+
+        if($buyingPrice> $sellingPrice*1.2){
+            return redirect()->back()->with('error', 'Sorry, the amount placed is too high for the product. Amount cannot exceed '.$sellingPrice*1.2);
+        }
+
+        if($buyingPrice < $sellingPrice*0.8){
+            return redirect()->back()->with('error', 'Sorry, the amount placed is too low for the bid. Amount cannot be below '.$sellingPrice*0.8);
         }
 
         try {

@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
    /*get product based on controller*/
     public function productsBasedOnCategory($category_id){
-        $products=Product::where([['status',1],['category_id',$category_id]])->get();
+        $now=Carbon::now();
+        $date=$now->toDateString();
+        $products=Product::where([['status',1],['sell_by_date','>',$date],['category_id',$category_id]])->get();
 
         /*to be populated in dashboard*/
         $categories=Category::all();

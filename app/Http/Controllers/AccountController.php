@@ -63,7 +63,7 @@ class AccountController extends Controller
 
         /*deposit to admin*/
         $t=new Transaction();
-        $t->amount=($amount*0.3);
+        $t->amount=($amount*0.2);
         $t->phone=$phone;
         $t->user_id=1;
         $t->type="Commission";

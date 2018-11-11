@@ -85,7 +85,7 @@ class MyProductsController extends Controller
 
             /*send message*/
             $message="Congratulations  you have won bid worth KES: "
-                .$give_bidder->amount." it will be available for delivery in the next 2 hrs";
+                .$give_bidder->amount." it will be available for delivery in the next 2 days";
 
             $sms=new SmsController();
             $sms->sendSms($debitCredit, $message);

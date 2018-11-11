@@ -11,7 +11,7 @@
 
                     <div class="row">
                         @foreach($products as $product)
-                            <div class="col-md-3 ">
+                            <div class="col-md-4 ">
                                 <div class="card ">
                                     <img class="card-img-bottom" src="{{$product->product_image}}"
                                          style="height: 240px; width: 560px; " >
