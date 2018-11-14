@@ -84,4 +84,7 @@ Route::group(['middleware'=>'auth'], function () {
 
     Route::post('/add-category', 'AdminController@addCategory');
 
+    Route::get('/withdraw', 'AccountController@withdrawView');
+    Route::post('/withdraw', 'AccountController@withdraw');
+
 });

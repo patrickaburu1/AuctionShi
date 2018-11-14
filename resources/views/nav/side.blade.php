@@ -67,6 +67,9 @@
                             <a href="{{url('top-up')}}">To-up</a>
                         </li>
                         <li class="text-dark h4">
+                            <a href="{{url('withdraw')}}">Withdraw</a>
+                        </li>
+                        <li class="text-dark h4">
                             <a href="{{url('transactions')}}">Transaction History</a>
                         </li>
                     </ul>
