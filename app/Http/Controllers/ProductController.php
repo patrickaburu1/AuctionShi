@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bid;
 use App\Category;
 use App\Product;
+use App\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,9 +80,9 @@ class ProductController extends Controller
         $buyingPrice=$request->amount;
         $sellingPrice=$product->amount;
 
-        if($buyingPrice> $sellingPrice*1.2){
+        /*if($buyingPrice> $sellingPrice*1.2){
             return redirect()->back()->with('error', 'Sorry, the amount placed is too high for the product. Amount cannot exceed '.$sellingPrice*1.2);
-        }
+        }*/
 
         if($buyingPrice < $sellingPrice*0.8){
             return redirect()->back()->with('error', 'Sorry, the amount placed is too low for the bid. Amount cannot be below '.$sellingPrice*0.8);
@@ -100,12 +101,24 @@ class ProductController extends Controller
             $bid->amount = $request->amount;
             $bid->save();
 
-            return redirect()->back()->with('info', 'Successfully placed bid');
+            /*check if has sufficient balance*/
+            $bidderBalance=Transaction::where([['user_id',$user->id],['status',1]])->sum('amount');
+
+            if ($request->amount > $bidderBalance){
+                return redirect()->back()->with('info', 'Successfully placed bid but you have insufficient balance. Kindly top-up to increase 
+                 your chances of winning product');
+            }
+
+            return redirect()->back()->with('success', 'Successfully placed bid. Maintain your account balance to increase chance of winning bid');
 
         }catch (\Exception $e){
             return redirect()->back()->with('error', 'Sorry something went wrong please try again later');
         }
     }
 
+    public function faq(){
+        $categories=Category::all();
 
+        return view('faq', compact('categories'));
+    }
 }

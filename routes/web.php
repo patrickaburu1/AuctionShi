@@ -88,3 +88,5 @@ Route::group(['middleware'=>'auth'], function () {
     Route::post('/withdraw', 'AccountController@withdraw');
 
 });
+
+Route::get('/faq','ProductController@faq');
